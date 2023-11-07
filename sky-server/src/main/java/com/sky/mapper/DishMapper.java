@@ -59,4 +59,11 @@ public interface DishMapper {
      */
     @AutoFill(value = OperationType.UPDATE)
     void update(Dish dish);
+
+    /**
+     * 动态sql根据分类查询菜品
+     * @param dish
+     * @return
+     */
+    List<Dish> selectByCategoryId(Dish dish);
 }
