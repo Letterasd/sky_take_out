@@ -1,6 +1,8 @@
 package com.sky.service;
 
 import com.sky.dto.SetmealDTO;
+import com.sky.dto.SetmealPageQueryDTO;
+import com.sky.result.PageResult;
 
 public interface SetMealService {
 
@@ -10,4 +12,11 @@ public interface SetMealService {
      * @param dto
      */
     void saveWithDish(SetmealDTO dto);
+
+    /**
+     * 分页查询
+     * @param dto
+     * @return
+     */
+    PageResult pageQuery(SetmealPageQueryDTO dto);
 }
