@@ -5,6 +5,7 @@ import com.sky.dto.SetmealPageQueryDTO;
 import com.sky.entity.SetmealDish;
 import com.sky.vo.SetmealVO;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Select;
 
 import java.util.List;
 
@@ -27,4 +28,17 @@ public interface SetmealDishMapper {
     void insertBatch(List<SetmealDish> setmealDishes);
 
 
+    /**
+     * 根据套餐id查询套餐菜品表
+     * @param id
+     * @return
+     */
+    @Select("select * from setmeal_dish where setmeal_id=#{id}")
+    List<SetmealDish> getBySetmealId(Long id);
+
+    /**
+     * 根据套餐id删除套餐菜品中的信息
+     * @param ids
+     */
+    void deleteBySetmealIds(List<Long> ids);
 }
