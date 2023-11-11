@@ -8,6 +8,7 @@ import com.sky.enumeration.OperationType;
 import com.sky.vo.SetmealVO;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 
 import java.util.List;
 
@@ -50,4 +51,20 @@ public interface SetmealMapper {
      * @param ids
      */
     void deleteByIds(List<Long> ids);
+
+    /**
+     * 更新Setmeal的信息
+     * @param setmeal
+     */
+    @AutoFill(value = OperationType.UPDATE)
+    void update(Setmeal setmeal);
+
+
+    /**
+     * 更新套餐的status字段
+     * @param setmeal
+     */
+    @AutoFill(value = OperationType.UPDATE)
+    @Update("update setmeal set status=#{status} where setmeal.id=#{id}")
+    void updateStatus(Setmeal setmeal);
 }
