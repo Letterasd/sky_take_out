@@ -100,4 +100,9 @@ public interface OrderService {
      */
     void complete(Long id);
 
+    /**
+     * 催单
+     * @return
+     */
+    void reminder(Long id);
 }
