@@ -2,7 +2,10 @@ package com.sky.controller.admin;
 
 import com.sky.result.Result;
 import com.sky.service.ReportService;
+import com.sky.vo.OrderReportVO;
+import com.sky.vo.SalesTop10ReportVO;
 import com.sky.vo.TurnoverReportVO;
+import com.sky.vo.UserReportVO;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
@@ -37,4 +40,53 @@ public class ReportController {
         TurnoverReportVO vo=reportService.getTurnoverStatistics(begin,end);
         return Result.success(vo);
     }
+
+    /**
+     * 用户数统计
+     * @param begin
+     * @param end
+     * @return
+     */
+    @GetMapping("/userStatistics")
+    @ApiOperation("用户数量统计")
+    public Result<UserReportVO> userStatistics(
+            @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate begin,
+            @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate end){
+        UserReportVO vo=reportService.getUserStatistics(begin,end);
+        log.info("用户数额统计:{},{}",begin,end);
+        return Result.success(vo);
+    }
+    /**
+     * 订单统计
+     * @param begin
+     * @param end
+     * @return
+     */
+    @GetMapping("/ordersStatistics")
+    @ApiOperation("订单数量统计")
+    public Result<OrderReportVO> ordersStatistics(
+            @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate begin,
+            @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate end){
+        OrderReportVO vo=reportService.getOrderStatistics(begin,end);
+        log.info("订单数额统计:{},{}",begin,end);
+        return Result.success(vo);
+    }
+
+    /**
+     * 销量排名
+     * @param begin
+     * @param end
+     * @return
+     */
+    @GetMapping("/top10")
+    @ApiOperation("销量排名top10")
+    public Result<SalesTop10ReportVO> top10(
+            @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate begin,
+            @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate end){
+        log.info("销量排名top10:{},{}",begin,end);
+        SalesTop10ReportVO vo=reportService.getSalesTop10(begin,end);
+        return Result.success(vo);
+    }
+
+
 }
